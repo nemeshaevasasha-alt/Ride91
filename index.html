@@ -3,471 +3,498 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>מוניות רוממה & ורדיה</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
-body {
-  font-family: Arial, sans-serif;
+body{
+  font-family:Arial,sans-serif;
   background:
-    radial-gradient(circle at 20% 20%, #263447 0%, transparent 35%),
-    linear-gradient(145deg, #080d14, #101a27);
-  color: white;
-  min-height: 100vh;
+    radial-gradient(circle at 20% 20%,#263447 0%,transparent 35%),
+    linear-gradient(145deg,#080d14,#101a27);
+  color:white;
+  min-height:100vh;
 }
 
-header {
-  padding: 22px 7%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+header{
+  padding:22px 7%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
 }
 
-.logo {
-  font-size: 24px;
-  font-weight: 900;
+.logo{font-size:24px;font-weight:900}
+.logo span{color:#ffd21f}
+
+.status{
+  padding:10px 16px;
+  border-radius:50px;
+  font-size:14px;
+  font-weight:bold;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
 }
 
-.logo span {
-  color: #ffd21f;
+.dot{
+  width:9px;
+  height:9px;
+  background:#999;
+  display:inline-block;
+  border-radius:50%;
+  margin-left:6px;
 }
 
-.status {
-  background: rgba(37,211,102,.12);
-  border: 1px solid rgba(37,211,102,.35);
-  padding: 10px 16px;
-  border-radius: 50px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
+.hero{
+  padding:50px 20px 30px;
+  text-align:center;
 }
 
-.dot {
-  width: 9px;
-  height: 9px;
-  background: #25d366;
-  display: inline-block;
-  border-radius: 50%;
-  margin-left: 6px;
-  box-shadow: 0 0 10px #25d366;
+.taxi-icon{font-size:70px}
+
+h1{
+  font-size:clamp(40px,7vw,72px);
+  margin:15px 0;
 }
 
-.hero {
-  padding: 50px 20px 30px;
-  text-align: center;
+h1 span{color:#ffd21f}
+
+.subtitle{
+  color:#aeb9c8;
+  font-size:18px;
+  max-width:600px;
+  margin:0 auto 35px;
+  line-height:1.6;
 }
 
-.taxi-icon {
-  font-size: 70px;
+.card{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(15px);
+  border-radius:28px;
+  padding:30px;
+  max-width:650px;
+  margin:20px auto;
+  box-shadow:0 25px 60px rgba(0,0,0,.3);
 }
 
-h1 {
-  font-size: clamp(40px, 7vw, 72px);
-  margin: 15px 0;
+.card h2{
+  margin-bottom:10px;
+  font-size:27px;
 }
 
-h1 span {
-  color: #ffd21f;
+.card p{
+  color:#aeb9c8;
+  margin-bottom:20px;
 }
 
-.subtitle {
-  color: #aeb9c8;
-  font-size: 18px;
-  max-width: 600px;
-  margin: 0 auto 35px;
-  line-height: 1.6;
+.areas{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin:20px 0;
 }
 
-.card {
-  background: rgba(255,255,255,.07);
-  border: 1px solid rgba(255,255,255,.12);
-  backdrop-filter: blur(15px);
-  border-radius: 28px;
-  padding: 30px;
-  max-width: 650px;
-  margin: 20px auto;
-  box-shadow: 0 25px 60px rgba(0,0,0,.3);
+.area{
+  padding:16px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:16px;
 }
 
-.card h2 {
-  margin-bottom: 10px;
-  font-size: 27px;
+.whatsapp{
+  width:100%;
+  border:none;
+  padding:19px;
+  border-radius:18px;
+  background:#25d366;
+  color:white;
+  font-size:20px;
+  font-weight:900;
+  cursor:pointer;
 }
 
-.card p {
-  color: #aeb9c8;
-  margin-bottom: 20px;
+.whatsapp.closed{
+  background:#e83c3c;
+  cursor:not-allowed;
 }
 
-.areas {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin: 20px 0;
+.phone{
+  display:block;
+  color:#8e9aaa;
+  margin-top:14px;
 }
 
-.area {
-  padding: 16px;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.07);
-  border-radius: 16px;
+/* REVIEWS */
+
+.rating-summary{
+  font-size:38px;
+  font-weight:900;
+  color:#ffd21f;
+  margin:10px 0;
 }
 
-.whatsapp {
-  width: 100%;
-  border: none;
-  padding: 19px;
-  border-radius: 18px;
-  background: #25d366;
-  color: white;
-  font-size: 20px;
-  font-weight: 900;
-  cursor: pointer;
-  transition: .2s;
+.stars{
+  display:flex;
+  justify-content:center;
+  direction:ltr;
+  gap:7px;
+  margin:20px 0;
 }
 
-.whatsapp:hover {
-  transform: translateY(-2px);
+.star{
+  font-size:42px;
+  cursor:pointer;
+  color:#56606d;
 }
 
-.whatsapp.closed {
-  background: #e83c3c;
-  cursor: not-allowed;
+.star.selected{color:#ffd21f}
+
+input,textarea{
+  width:100%;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:14px;
+  padding:15px;
+  color:white;
+  font-size:16px;
+  margin-bottom:12px;
+  outline:none;
 }
 
-.phone {
-  display: block;
-  color: #8e9aaa;
-  margin-top: 14px;
-}
-
-
-/* =========================
-   REVIEWS
-========================= */
-
-.rating-summary {
-  font-size: 38px;
-  font-weight: 900;
-  color: #ffd21f;
-  margin: 10px 0;
-}
-
-.stars {
-  display: flex;
-  justify-content: center;
-  direction: ltr;
-  gap: 7px;
-  margin: 20px 0;
-}
-
-.star {
-  font-size: 42px;
-  cursor: pointer;
-  color: #56606d;
-  transition: .15s;
-}
-
-.star.selected {
-  color: #ffd21f;
-}
-
-.star:hover {
-  transform: scale(1.15);
-}
-
-input,
-textarea {
-  width: 100%;
-  background: rgba(255,255,255,.07);
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 14px;
-  padding: 15px;
-  color: white;
-  font-size: 16px;
-  margin-bottom: 12px;
-  outline: none;
-}
-
-input:focus,
-textarea:focus {
-  border-color: #ffd21f;
-}
-
-textarea {
-  min-height: 110px;
-  resize: vertical;
+textarea{
+  min-height:110px;
+  resize:vertical;
 }
 
 input::placeholder,
-textarea::placeholder {
-  color: #84909e;
+textarea::placeholder{color:#84909e}
+
+.submit-review,
+.admin-main-button{
+  width:100%;
+  border:none;
+  padding:17px;
+  border-radius:15px;
+  font-weight:900;
+  font-size:17px;
+  cursor:pointer;
 }
 
-.submit-review {
-  width: 100%;
-  border: none;
-  background: #ffd21f;
-  color: #111;
-  padding: 17px;
-  border-radius: 15px;
-  font-weight: 900;
-  font-size: 18px;
-  cursor: pointer;
+.submit-review{
+  background:#ffd21f;
+  color:#111;
 }
 
-.submit-review:disabled {
-  opacity: .6;
-  cursor: wait;
+.review{
+  text-align:right;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  padding:18px;
+  border-radius:17px;
+  margin-top:12px;
 }
 
-.review {
-  text-align: right;
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.08);
-  padding: 18px;
-  border-radius: 17px;
-  margin-top: 12px;
+.review-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
 }
 
-.review-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
+.review-name{font-weight:900}
+
+.review-stars{
+  color:#ffd21f;
+  direction:ltr;
 }
 
-.review-name {
-  font-weight: 900;
-  font-size: 17px;
+.review-text{
+  color:#c7d0db;
+  margin-top:10px;
+  line-height:1.5;
+  overflow-wrap:anywhere;
 }
 
-.review-stars {
-  color: #ffd21f;
-  direction: ltr;
-  white-space: nowrap;
+.message{
+  margin-top:13px;
+  min-height:20px;
+  line-height:1.5;
 }
 
-.review-text {
-  color: #c7d0db;
-  margin-top: 10px;
-  line-height: 1.5;
-  overflow-wrap: anywhere;
+.success{color:#25d366}
+.error{color:#ff6565}
+
+.divider{
+  border:none;
+  border-top:1px solid rgba(255,255,255,.1);
+  margin:25px 0;
 }
 
-.message {
-  margin-top: 13px;
-  min-height: 20px;
-  line-height: 1.5;
+/* ADMIN */
+
+.admin-link{
+  background:none;
+  border:none;
+  color:#667281;
+  font-size:12px;
+  cursor:pointer;
+  margin-top:15px;
 }
 
-.success {
-  color: #25d366;
+.admin-panel{
+  display:none;
+  margin-top:20px;
+  padding:20px;
+  background:rgba(255,210,31,.06);
+  border:1px solid rgba(255,210,31,.18);
+  border-radius:18px;
 }
 
-.error {
-  color: #ff6565;
+.admin-panel.show{display:block}
+
+.admin-main-button{
+  background:#ffd21f;
+  color:#111;
+  margin-bottom:10px;
 }
 
-.divider {
-  border: none;
-  border-top: 1px solid rgba(255,255,255,.1);
-  margin: 25px 0;
+.logout-button{
+  border:none;
+  background:transparent;
+  color:#ff7777;
+  cursor:pointer;
+  padding:10px;
 }
 
-footer {
-  text-align: center;
-  color: #778291;
-  padding: 30px;
+.modal-bg{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.80);
+  z-index:999;
+  padding:20px;
+  align-items:center;
+  justify-content:center;
 }
 
-@media(max-width: 600px) {
+.modal-bg.show{display:flex}
 
-  header {
-    padding: 18px;
-  }
+.modal{
+  width:100%;
+  max-width:430px;
+  background:#121c29;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:24px;
+  padding:25px;
+  text-align:right;
+}
 
-  .logo {
-    font-size: 18px;
-  }
+.modal h2{margin-bottom:20px}
 
-  .status {
-    font-size: 12px;
-    padding: 9px 12px;
-  }
+.close-modal{
+  float:left;
+  background:none;
+  border:none;
+  color:white;
+  font-size:25px;
+  cursor:pointer;
+}
 
-  .card {
-    padding: 22px 17px;
-  }
+.login-button{
+  width:100%;
+  background:#ffd21f;
+  color:#111;
+  border:none;
+  border-radius:14px;
+  padding:15px;
+  font-weight:900;
+  font-size:16px;
+  cursor:pointer;
+}
 
-  .star {
-    font-size: 36px;
-  }
+button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
 
-  .subtitle {
-    font-size: 16px;
-  }
+footer{
+  text-align:center;
+  color:#778291;
+  padding:30px;
+}
+
+@media(max-width:600px){
+  header{padding:18px}
+  .logo{font-size:18px}
+  .status{font-size:12px;padding:9px 12px}
+  .card{padding:22px 17px}
+  .star{font-size:36px}
+  .subtitle{font-size:16px}
 }
 </style>
 </head>
 
-
 <body>
 
 <header>
+  <div class="logo">🚕 <span>ROMEMA</span> TAXI</div>
 
-  <div class="logo">
-    🚕 <span>ROMEMA</span> TAXI
-  </div>
-
-  <div
-    class="status"
-    id="statusButton"
-    onclick="toggleStatus()"
-  >
+  <div class="status" id="statusBox">
     <span class="dot" id="statusDot"></span>
-    <span id="statusText">פתוח</span>
+    <span id="statusText">טוען...</span>
   </div>
-
 </header>
-
 
 <section class="hero">
 
-  <div class="taxi-icon">🚕</div>
+<div class="taxi-icon">🚕</div>
 
-  <h1>
-    צריכים <span>מונית?</span>
-  </h1>
+<h1>צריכים <span>מונית?</span></h1>
 
-  <div class="subtitle">
-    הזמנת מונית פשוטה ומהירה באזור רוממה הישנה וורדיה בחיפה.
-    שלחו את פרטי הנסיעה ישירות ב־WhatsApp.
+<div class="subtitle">
+  הזמנת מונית פשוטה ומהירה באזור רוממה הישנה וורדיה בחיפה.
+  שלחו את פרטי הנסיעה ישירות ב־WhatsApp.
+</div>
+
+<div class="card">
+
+  <h2>🚖 הזמנת מונית</h2>
+
+  <p id="orderDescription">בודק זמינות...</p>
+
+  <div class="areas">
+    <div class="area">📍 רוממה הישנה</div>
+    <div class="area">📍 ורדיה</div>
   </div>
 
+  <button
+    class="whatsapp"
+    id="whatsappButton"
+    onclick="orderTaxi()">
+    טוען...
+  </button>
 
-  <!-- TAXI ORDER -->
+  <span class="phone">📞 058-562-1659</span>
 
-  <div class="card">
+  <button class="admin-link" onclick="openAdminLogin()">
+    🔐 כניסת מנהל
+  </button>
 
-    <h2>🚖 הזמנת מונית</h2>
+  <div class="admin-panel" id="adminPanel">
 
-    <p id="orderDescription">
-      אנחנו פתוחים! שלחו את פרטי הנסיעה.
-    </p>
-
-    <div class="areas">
-
-      <div class="area">
-        📍 רוממה הישנה
-      </div>
-
-      <div class="area">
-        📍 ורדיה
-      </div>
-
-    </div>
+    <h3 style="margin-bottom:15px;">
+      🔐 ניהול המונית
+    </h3>
 
     <button
-      class="whatsapp"
-      id="whatsappButton"
-      onclick="orderTaxi()"
-    >
-      💬 הזמנת מונית ב־WhatsApp
+      class="admin-main-button"
+      id="adminStatusButton"
+      onclick="changeTaxiStatus()">
+      שנה סטטוס
     </button>
 
-    <span class="phone">
-      📞 058-562-1659
-    </span>
-
-  </div>
-
-
-  <!-- RATING -->
-
-  <div class="card">
-
-    <h2>⭐ דירוגים וחוות דעת</h2>
-
-    <div
-      class="rating-summary"
-      id="ratingAverage"
-    >
-      ⭐ -
-    </div>
-
-    <p id="ratingCount">
-      טוען דירוגים...
-    </p>
-
-    <hr class="divider">
-
-    <h2>איך הייתה הנסיעה?</h2>
-
-    <p>לחצו על מספר הכוכבים</p>
-
-
-    <div class="stars">
-
-      <span class="star" data-rating="1">★</span>
-      <span class="star" data-rating="2">★</span>
-      <span class="star" data-rating="3">★</span>
-      <span class="star" data-rating="4">★</span>
-      <span class="star" data-rating="5">★</span>
-
-    </div>
-
-
-    <input
-      id="customerName"
-      maxlength="100"
-      placeholder="השם שלכם"
-    >
-
-
-    <textarea
-      id="reviewText"
-      maxlength="1000"
-      placeholder="כתבו חוות דעת..."
-    ></textarea>
-
+    <div id="adminMessage" class="message"></div>
 
     <button
-      class="submit-review"
-      id="submitReviewButton"
-      onclick="submitReview()"
-    >
-      ⭐ שליחת דירוג
+      class="logout-button"
+      onclick="logoutAdmin()">
+      התנתקות
     </button>
 
-
-    <div
-      class="message"
-      id="reviewMessage"
-    ></div>
-
   </div>
 
+</div>
 
-  <!-- REVIEWS -->
 
-  <div class="card">
+<div class="card">
 
-    <h2>💬 מה הלקוחות אומרים</h2>
+  <h2>⭐ דירוגים וחוות דעת</h2>
 
-    <div id="reviews">
-      טוען ביקורות...
-    </div>
-
+  <div class="rating-summary" id="ratingAverage">
+    ⭐ -
   </div>
+
+  <p id="ratingCount">טוען דירוגים...</p>
+
+  <hr class="divider">
+
+  <h2>איך הייתה הנסיעה?</h2>
+
+  <p>לחצו על מספר הכוכבים</p>
+
+  <div class="stars">
+    <span class="star" data-rating="1">★</span>
+    <span class="star" data-rating="2">★</span>
+    <span class="star" data-rating="3">★</span>
+    <span class="star" data-rating="4">★</span>
+    <span class="star" data-rating="5">★</span>
+  </div>
+
+  <input
+    id="customerName"
+    maxlength="100"
+    placeholder="השם שלכם">
+
+  <textarea
+    id="reviewText"
+    maxlength="1000"
+    placeholder="כתבו חוות דעת..."></textarea>
+
+  <button
+    class="submit-review"
+    id="submitReviewButton"
+    onclick="submitReview()">
+    ⭐ שליחת דירוג
+  </button>
+
+  <div class="message" id="reviewMessage"></div>
+
+</div>
+
+
+<div class="card">
+  <h2>💬 מה הלקוחות אומרים</h2>
+  <div id="reviews">טוען ביקורות...</div>
+</div>
 
 </section>
+
+
+<div class="modal-bg" id="adminModal">
+
+  <div class="modal">
+
+    <button class="close-modal" onclick="closeAdminLogin()">
+      ×
+    </button>
+
+    <h2>🔐 כניסת מנהל</h2>
+
+    <input
+      type="email"
+      id="adminEmail"
+      autocomplete="username"
+      placeholder="אימייל">
+
+    <input
+      type="password"
+      id="adminPassword"
+      autocomplete="current-password"
+      placeholder="סיסמה">
+
+    <button
+      class="login-button"
+      id="loginButton"
+      onclick="loginAdmin()">
+      התחברות
+    </button>
+
+    <div class="message" id="loginMessage"></div>
+
+  </div>
+
+</div>
 
 
 <footer>
@@ -475,118 +502,248 @@ footer {
 </footer>
 
 
+<!-- APPWRITE SDK -->
+<script src="https://cdn.jsdelivr.net/npm/appwrite@21.0.0"></script>
+
 <script>
 
-/* =================================
-   APPWRITE SETTINGS
-================================= */
+/* ==============================
+   CONFIG
+============================== */
 
-const APPWRITE_ENDPOINT =
+const ENDPOINT =
   "https://fra.cloud.appwrite.io/v1";
 
 const PROJECT_ID =
   "6aaac47d003a6045da4c";
 
-/* המתוקנים */
 const DATABASE_ID =
   "6aaac55300329bc856f4";
 
-const TABLE_ID =
+const REVIEWS_TABLE =
   "6aaac5630036be7e64f2";
 
+const STATUS_TABLE =
+  "6aab87d10001d71f6ea8";
 
-/* =================================
-   OPEN / CLOSED
-================================= */
+const STATUS_ROW =
+  "6aab882800369b8c9451";
 
-let isOpen = true;
-
-
-function toggleStatus() {
-
-  isOpen = !isOpen;
-
-  const text =
-    document.getElementById("statusText");
-
-  const dot =
-    document.getElementById("statusDot");
-
-  const statusButton =
-    document.getElementById("statusButton");
-
-  const whatsappButton =
-    document.getElementById("whatsappButton");
-
-  const description =
-    document.getElementById("orderDescription");
+const ADMIN_USER_ID =
+  "6aab89670000a3dcaaa0";
 
 
-  if (isOpen) {
+/* ==============================
+   APPWRITE
+============================== */
 
-    text.innerText = "פתוח";
+const client =
+  new Appwrite.Client();
 
-    dot.style.background = "#25d366";
-    dot.style.boxShadow =
-      "0 0 10px #25d366";
+client
+  .setEndpoint(ENDPOINT)
+  .setProject(PROJECT_ID);
 
-    statusButton.style.background =
-      "rgba(37,211,102,.12)";
+const account =
+  new Appwrite.Account(client);
 
-    statusButton.style.borderColor =
-      "rgba(37,211,102,.35)";
 
-    whatsappButton.innerText =
-      "💬 הזמנת מונית ב־WhatsApp";
+let isOpen = false;
+let statusLoaded = false;
+let adminLoggedIn = false;
 
-    whatsappButton.classList.remove("closed");
 
-    description.innerText =
-      "אנחנו פתוחים! שלחו את פרטי הנסיעה.";
+/* ==============================
+   TAXI STATUS
+============================== */
 
-  } else {
+async function loadTaxiStatus(){
 
-    text.innerText = "סגור";
+  try{
 
-    dot.style.background = "#ff3b3b";
-    dot.style.boxShadow =
-      "0 0 10px #ff3b3b";
+    const response = await fetch(
+      `${ENDPOINT}/tablesdb/${DATABASE_ID}/tables/${STATUS_TABLE}/rows/${STATUS_ROW}`,
+      {
+        headers:{
+          "X-Appwrite-Project":PROJECT_ID
+        }
+      }
+    );
 
-    statusButton.style.background =
-      "rgba(255,59,59,.12)";
+    const result =
+      await response.json();
 
-    statusButton.style.borderColor =
-      "rgba(255,59,59,.35)";
+    if(!response.ok){
+      throw new Error(
+        result.message ||
+        "לא ניתן לטעון סטטוס"
+      );
+    }
 
-    whatsappButton.innerText =
-      "🔴 כרגע סגור";
+    isOpen =
+      result.isOpen === true;
 
-    whatsappButton.classList.add("closed");
+    statusLoaded = true;
 
-    description.innerText =
-      "כרגע אנחנו סגורים להזמנות.";
+    renderTaxiStatus();
 
+  }catch(error){
+
+    console.error(
+      "STATUS ERROR",
+      error
+    );
+
+    statusLoaded = false;
+
+    document.getElementById(
+      "statusText"
+    ).innerText = "לא זמין";
+
+    document.getElementById(
+      "statusDot"
+    ).style.background = "#999";
+
+    document.getElementById(
+      "orderDescription"
+    ).innerText =
+      "לא ניתן לבדוק כרגע את זמינות השירות.";
+
+    const button =
+      document.getElementById(
+        "whatsappButton"
+      );
+
+    button.innerText =
+      "לא ניתן להזמין כרגע";
+
+    button.classList.add(
+      "closed"
+    );
   }
 }
 
 
-/* =================================
+function renderTaxiStatus(){
+
+  const text =
+    document.getElementById(
+      "statusText"
+    );
+
+  const dot =
+    document.getElementById(
+      "statusDot"
+    );
+
+  const box =
+    document.getElementById(
+      "statusBox"
+    );
+
+  const whatsapp =
+    document.getElementById(
+      "whatsappButton"
+    );
+
+  const description =
+    document.getElementById(
+      "orderDescription"
+    );
+
+  const adminButton =
+    document.getElementById(
+      "adminStatusButton"
+    );
+
+
+  if(isOpen){
+
+    text.innerText = "פתוח";
+
+    dot.style.background =
+      "#25d366";
+
+    dot.style.boxShadow =
+      "0 0 10px #25d366";
+
+    box.style.background =
+      "rgba(37,211,102,.12)";
+
+    box.style.borderColor =
+      "rgba(37,211,102,.35)";
+
+    whatsapp.innerText =
+      "💬 הזמנת מונית ב־WhatsApp";
+
+    whatsapp.classList.remove(
+      "closed"
+    );
+
+    description.innerText =
+      "אנחנו פתוחים! שלחו את פרטי הנסיעה.";
+
+    adminButton.innerText =
+      "🔴 סגור הזמנות";
+
+  }else{
+
+    text.innerText = "סגור";
+
+    dot.style.background =
+      "#ff3b3b";
+
+    dot.style.boxShadow =
+      "0 0 10px #ff3b3b";
+
+    box.style.background =
+      "rgba(255,59,59,.12)";
+
+    box.style.borderColor =
+      "rgba(255,59,59,.35)";
+
+    whatsapp.innerText =
+      "🔴 כרגע סגור";
+
+    whatsapp.classList.add(
+      "closed"
+    );
+
+    description.innerText =
+      "כרגע אנחנו סגורים להזמנות.";
+
+    adminButton.innerText =
+      "🟢 פתח הזמנות";
+  }
+}
+
+
+/* ==============================
    WHATSAPP
-================================= */
+============================== */
 
-function orderTaxi() {
+function orderTaxi(){
 
-  if (!isOpen) {
+  if(!statusLoaded){
 
-    alert("🔴 כרגע אנחנו סגורים להזמנות.");
+    alert(
+      "לא ניתן לבדוק כרגע את זמינות המונית."
+    );
 
     return;
   }
 
+  if(!isOpen){
+
+    alert(
+      "🔴 כרגע אנחנו סגורים להזמנות."
+    );
+
+    return;
+  }
 
   const phone =
     "972585621659";
-
 
   const message =
 `שלום, אני רוצה להזמין מונית 🚕🚖
@@ -595,85 +752,476 @@ function orderTaxi() {
 
 כתובת (לאן ארצה להגיע):`;
 
-
-  const url =
-    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-
-
-  window.open(url, "_blank");
+  window.open(
+    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
 }
 
 
-/* =================================
-   STAR SELECTION
-================================= */
+/* ==============================
+   ADMIN MODAL
+============================== */
+
+function openAdminLogin(){
+
+  if(adminLoggedIn){
+
+    document
+      .getElementById("adminPanel")
+      .classList.toggle("show");
+
+    return;
+  }
+
+  document
+    .getElementById("adminModal")
+    .classList.add("show");
+}
+
+
+function closeAdminLogin(){
+
+  document
+    .getElementById("adminModal")
+    .classList.remove("show");
+
+  document.getElementById(
+    "adminPassword"
+  ).value = "";
+}
+
+
+/* ==============================
+   ADMIN LOGIN
+============================== */
+
+async function loginAdmin(){
+
+  const email =
+    document
+      .getElementById("adminEmail")
+      .value
+      .trim();
+
+  const password =
+    document
+      .getElementById("adminPassword")
+      .value;
+
+  const message =
+    document.getElementById(
+      "loginMessage"
+    );
+
+  const button =
+    document.getElementById(
+      "loginButton"
+    );
+
+
+  if(!email || !password){
+
+    message.className =
+      "message error";
+
+    message.innerText =
+      "נא למלא אימייל וסיסמה.";
+
+    return;
+  }
+
+
+  button.disabled = true;
+  button.innerText = "מתחבר...";
+
+  message.innerText = "";
+
+
+  try{
+
+    /* Delete old session if one exists */
+
+    try{
+
+      await account.deleteSession({
+        sessionId:"current"
+      });
+
+    }catch(e){}
+
+
+    /* LOGIN */
+
+    await account.createEmailPasswordSession({
+      email:email,
+      password:password
+    });
+
+
+    /* GET LOGGED USER */
+
+    const user =
+      await account.get();
+
+
+    console.log(
+      "USER ID:",
+      user.$id
+    );
+
+
+    if(
+      user.$id !== ADMIN_USER_ID
+    ){
+
+      try{
+
+        await account.deleteSession({
+          sessionId:"current"
+        });
+
+      }catch(e){}
+
+      throw new Error(
+        "למשתמש הזה אין הרשאת מנהל"
+      );
+    }
+
+
+    /* ADMIN VERIFIED */
+
+    adminLoggedIn = true;
+
+
+    closeAdminLogin();
+
+
+    document
+      .getElementById("adminPanel")
+      .classList.add("show");
+
+
+    const adminMessage =
+      document.getElementById(
+        "adminMessage"
+      );
+
+    adminMessage.className =
+      "message success";
+
+    adminMessage.innerText =
+      "✅ מחובר כמנהל";
+
+
+    await loadTaxiStatus();
+
+  }catch(error){
+
+    console.error(
+      "LOGIN ERROR:",
+      error
+    );
+
+    adminLoggedIn = false;
+
+    message.className =
+      "message error";
+
+    message.innerText =
+      "❌ " +
+      (
+        error.message ||
+        "ההתחברות נכשלה"
+      );
+
+  }finally{
+
+    button.disabled = false;
+
+    button.innerText =
+      "התחברות";
+  }
+}
+
+
+/* ==============================
+   EXISTING SESSION
+============================== */
+
+async function checkAdminSession(){
+
+  try{
+
+    const user =
+      await account.get();
+
+
+    if(
+      user.$id === ADMIN_USER_ID
+    ){
+
+      adminLoggedIn = true;
+
+      document
+        .getElementById("adminPanel")
+        .classList.add("show");
+
+    }else{
+
+      adminLoggedIn = false;
+    }
+
+  }catch(error){
+
+    adminLoggedIn = false;
+  }
+}
+
+
+/* ==============================
+   CHANGE STATUS
+============================== */
+
+async function changeTaxiStatus(){
+
+  const message =
+    document.getElementById(
+      "adminMessage"
+    );
+
+  const button =
+    document.getElementById(
+      "adminStatusButton"
+    );
+
+
+  if(!adminLoggedIn){
+
+    message.className =
+      "message error";
+
+    message.innerText =
+      "❌ צריך להתחבר כמנהל.";
+
+    return;
+  }
+
+
+  button.disabled = true;
+  button.innerText = "שומר...";
+
+  const newStatus =
+    !isOpen;
+
+
+  try{
+
+    /*
+      Get JWT for authenticated
+      Appwrite request.
+    */
+
+    const jwt =
+      await account.createJWT();
+
+
+    const response =
+      await fetch(
+
+        `${ENDPOINT}/tablesdb/${DATABASE_ID}/tables/${STATUS_TABLE}/rows/${STATUS_ROW}`,
+
+        {
+          method:"PATCH",
+
+          headers:{
+            "Content-Type":"application/json",
+            "X-Appwrite-Project":PROJECT_ID,
+            "X-Appwrite-JWT":jwt.jwt
+          },
+
+          body:JSON.stringify({
+            data:{
+              isOpen:newStatus
+            }
+          })
+        }
+
+      );
+
+
+    const result =
+      await response.json();
+
+
+    if(!response.ok){
+
+      throw new Error(
+        result.message ||
+        "אין הרשאה לשנות את הסטטוס"
+      );
+    }
+
+
+    isOpen =
+      result.isOpen === true;
+
+    statusLoaded = true;
+
+
+    renderTaxiStatus();
+
+
+    message.className =
+      "message success";
+
+    message.innerText =
+      isOpen
+        ? "✅ המונית פתוחה עכשיו להזמנות."
+        : "✅ המונית סגורה עכשיו להזמנות.";
+
+
+  }catch(error){
+
+    console.error(
+      "UPDATE ERROR:",
+      error
+    );
+
+    message.className =
+      "message error";
+
+    message.innerText =
+      "❌ " +
+      (
+        error.message ||
+        "לא ניתן לעדכן את הסטטוס"
+      );
+
+  }finally{
+
+    button.disabled = false;
+
+    renderTaxiStatus();
+  }
+}
+
+
+/* ==============================
+   LOGOUT
+============================== */
+
+async function logoutAdmin(){
+
+  try{
+
+    await account.deleteSession({
+      sessionId:"current"
+    });
+
+  }catch(error){}
+
+
+  adminLoggedIn = false;
+
+
+  document
+    .getElementById("adminPanel")
+    .classList.remove("show");
+
+
+  document.getElementById(
+    "adminPassword"
+  ).value = "";
+
+
+  alert(
+    "התנתקת מחשבון המנהל."
+  );
+}
+
+
+/* ==============================
+   REVIEWS
+============================== */
 
 let selectedRating = 0;
 
 const stars =
-  document.querySelectorAll(".star");
+  document.querySelectorAll(
+    ".star"
+  );
 
 
-stars.forEach(star => {
+stars.forEach(star=>{
 
-  star.addEventListener("click", () => {
+  star.addEventListener(
+    "click",
+    ()=>{
 
-    selectedRating =
-      Number(star.dataset.rating);
+      selectedRating =
+        Number(
+          star.dataset.rating
+        );
 
-    updateStars();
+      stars.forEach(s=>{
 
-  });
+        s.classList.toggle(
+          "selected",
+          Number(
+            s.dataset.rating
+          ) <= selectedRating
+        );
+
+      });
+
+    }
+  );
 
 });
 
 
-function updateStars() {
+function clearStars(){
 
-  stars.forEach(star => {
+  selectedRating = 0;
 
-    const rating =
-      Number(star.dataset.rating);
-
-    star.classList.toggle(
-      "selected",
-      rating <= selectedRating
-    );
-
-  });
-
+  stars.forEach(
+    star=>
+      star.classList.remove(
+        "selected"
+      )
+  );
 }
 
 
-/* =================================
-   SEND REVIEW TO APPWRITE
-================================= */
+/* ==============================
+   SUBMIT REVIEW
+============================== */
 
-async function submitReview() {
+async function submitReview(){
 
   const name =
     document
       .getElementById("customerName")
-      .value
-      .trim();
+      .value.trim();
 
-
-  const reviewText =
+  const text =
     document
       .getElementById("reviewText")
-      .value
-      .trim();
-
+      .value.trim();
 
   const message =
-    document.getElementById("reviewMessage");
-
+    document.getElementById(
+      "reviewMessage"
+    );
 
   const button =
-    document.getElementById("submitReviewButton");
+    document.getElementById(
+      "submitReviewButton"
+    );
 
 
-  if (!name) {
+  if(!name){
 
     message.className =
       "message error";
@@ -685,20 +1233,19 @@ async function submitReview() {
   }
 
 
-  if (selectedRating < 1 ||
-      selectedRating > 5) {
+  if(selectedRating < 1){
 
     message.className =
       "message error";
 
     message.innerText =
-      "נא לבחור בין 1 ל־5 כוכבים.";
+      "נא לבחור דירוג של 1–5 כוכבים.";
 
     return;
   }
 
 
-  if (!reviewText) {
+  if(!text){
 
     message.className =
       "message error";
@@ -711,53 +1258,35 @@ async function submitReview() {
 
 
   button.disabled = true;
-
-  button.innerText =
-    "שולח דירוג...";
+  button.innerText = "שולח...";
 
 
-  message.className = "message";
-
-  message.innerText = "";
-
-
-  try {
+  try{
 
     const response =
       await fetch(
-        `${APPWRITE_ENDPOINT}/tablesdb/${DATABASE_ID}/tables/${TABLE_ID}/rows`,
+
+        `${ENDPOINT}/tablesdb/${DATABASE_ID}/tables/${REVIEWS_TABLE}/rows`,
+
         {
+          method:"POST",
 
-          method: "POST",
-
-          headers: {
-
-            "Content-Type":
-              "application/json",
-
-            "X-Appwrite-Project":
-              PROJECT_ID
-
+          headers:{
+            "Content-Type":"application/json",
+            "X-Appwrite-Project":PROJECT_ID
           },
 
-          body: JSON.stringify({
+          body:JSON.stringify({
 
-            rowId: "unique()",
+            rowId:"unique()",
 
-            data: {
-
-              customerName: name,
-
-              stars:
-                selectedRating,
-
-              reviewText:
-                reviewText
-
+            data:{
+              customerName:name,
+              stars:selectedRating,
+              reviewText:text
             }
 
           })
-
         }
       );
 
@@ -766,104 +1295,79 @@ async function submitReview() {
       await response.json();
 
 
-    if (!response.ok) {
+    if(!response.ok){
 
       throw new Error(
         result.message ||
-        "לא ניתן לשמור את הדירוג"
+        "לא ניתן לשמור דירוג"
       );
-
     }
 
 
     message.className =
       "message success";
 
-
     message.innerText =
-      "✅ תודה! הדירוג נשמר בהצלחה.";
+      "✅ תודה! הדירוג נשמר.";
 
 
-    document
-      .getElementById("customerName")
-      .value = "";
+    document.getElementById(
+      "customerName"
+    ).value = "";
+
+    document.getElementById(
+      "reviewText"
+    ).value = "";
 
 
-    document
-      .getElementById("reviewText")
-      .value = "";
-
-
-    selectedRating = 0;
-
-    updateStars();
-
+    clearStars();
 
     await loadReviews();
 
-  }
 
-  catch (error) {
-
-    console.error(error);
-
+  }catch(error){
 
     message.className =
       "message error";
 
-
     message.innerText =
-      "❌ לא הצלחנו לשמור את הדירוג: " +
-      error.message;
+      "❌ " +
+      (
+        error.message ||
+        "לא ניתן לשמור דירוג"
+      );
 
-  }
-
-  finally {
+  }finally{
 
     button.disabled = false;
 
     button.innerText =
       "⭐ שליחת דירוג";
-
   }
-
 }
 
 
-/* =================================
-   LOAD REVIEWS FROM APPWRITE
-================================= */
+/* ==============================
+   LOAD REVIEWS
+============================== */
 
-async function loadReviews() {
+async function loadReviews(){
 
-  const reviewsBox =
-    document.getElementById("reviews");
-
-
-  const averageBox =
-    document.getElementById("ratingAverage");
+  const box =
+    document.getElementById(
+      "reviews"
+    );
 
 
-  const countBox =
-    document.getElementById("ratingCount");
-
-
-  try {
+  try{
 
     const response =
       await fetch(
-        `${APPWRITE_ENDPOINT}/tablesdb/${DATABASE_ID}/tables/${TABLE_ID}/rows`,
+        `${ENDPOINT}/tablesdb/${DATABASE_ID}/tables/${REVIEWS_TABLE}/rows`,
         {
-
-          method: "GET",
-
-          headers: {
-
-            "X-Appwrite-Project":
-              PROJECT_ID
-
+          headers:{
+            "X-Appwrite-Project":PROJECT_ID
           }
-
         }
       );
 
@@ -872,13 +1376,12 @@ async function loadReviews() {
       await response.json();
 
 
-    if (!response.ok) {
+    if(!response.ok){
 
       throw new Error(
         result.message ||
-        "לא ניתן לטעון את הביקורות"
+        "לא ניתן לטעון ביקורות"
       );
-
     }
 
 
@@ -886,206 +1389,192 @@ async function loadReviews() {
       result.rows || [];
 
 
-    /* NO REVIEWS */
+    if(reviews.length === 0){
 
-    if (reviews.length === 0) {
-
-      averageBox.innerText =
+      document.getElementById(
+        "ratingAverage"
+      ).innerText =
         "⭐ אין עדיין דירוג";
 
-      countBox.innerText =
+
+      document.getElementById(
+        "ratingCount"
+      ).innerText =
         "היו הראשונים לדרג!";
 
-      reviewsBox.innerHTML =
+
+      box.innerHTML =
         "<p>עדיין אין חוות דעת.</p>";
 
       return;
     }
 
 
-    /* CALCULATE AVERAGE */
-
-    let totalStars = 0;
+    let total = 0;
 
 
-    reviews.forEach(review => {
+    reviews.forEach(review=>{
 
-      totalStars +=
-        Number(review.stars) || 0;
+      total +=
+        Number(
+          review.stars
+        ) || 0;
 
     });
 
 
     const average =
-      totalStars / reviews.length;
+      total / reviews.length;
 
 
-    averageBox.innerText =
-      "⭐ " +
-      average.toFixed(1) +
-      " / 5";
+    document.getElementById(
+      "ratingAverage"
+    ).innerText =
+      `⭐ ${average.toFixed(1)} / 5`;
 
 
-    if (reviews.length === 1) {
-
-      countBox.innerText =
-        "דירוג אחד";
-
-    } else {
-
-      countBox.innerText =
-        reviews.length +
-        " דירוגים";
-
-    }
+    document.getElementById(
+      "ratingCount"
+    ).innerText =
+      `${reviews.length} דירוגים`;
 
 
-    /* DISPLAY REVIEWS */
-
-    reviewsBox.innerHTML = "";
+    box.innerHTML = "";
 
 
-    const reversedReviews =
-      reviews.slice().reverse();
+    reviews
+      .slice()
+      .reverse()
+      .forEach(review=>{
+
+        const item =
+          document.createElement(
+            "div"
+          );
+
+        item.className =
+          "review";
 
 
-    reversedReviews.forEach(review => {
+        const top =
+          document.createElement(
+            "div"
+          );
 
-      const reviewElement =
-        document.createElement("div");
-
-
-      reviewElement.className =
-        "review";
-
-
-      const top =
-        document.createElement("div");
+        top.className =
+          "review-top";
 
 
-      top.className =
-        "review-top";
+        const name =
+          document.createElement(
+            "div"
+          );
+
+        name.className =
+          "review-name";
+
+        name.textContent =
+          review.customerName ||
+          "לקוח";
 
 
-      const nameElement =
-        document.createElement("div");
+        const rating =
+          Math.max(
+            0,
+            Math.min(
+              5,
+              Number(
+                review.stars
+              ) || 0
+            )
+          );
 
 
-      nameElement.className =
-        "review-name";
+        const ratingElement =
+          document.createElement(
+            "div"
+          );
+
+        ratingElement.className =
+          "review-stars";
+
+        ratingElement.textContent =
+          "★".repeat(rating) +
+          "☆".repeat(5-rating);
 
 
-      nameElement.textContent =
-        review.customerName ||
-        "לקוח";
+        const reviewText =
+          document.createElement(
+            "div"
+          );
+
+        reviewText.className =
+          "review-text";
+
+        reviewText.textContent =
+          review.reviewText ||
+          "";
 
 
-      const starsElement =
-        document.createElement("div");
+        top.appendChild(name);
+        top.appendChild(ratingElement);
+
+        item.appendChild(top);
+        item.appendChild(reviewText);
+
+        box.appendChild(item);
+
+      });
 
 
-      starsElement.className =
-        "review-stars";
+  }catch(error){
+
+    console.error(
+      "REVIEWS ERROR:",
+      error
+    );
 
 
-      const rating =
-        Math.max(
-          0,
-          Math.min(
-            5,
-            Number(review.stars) || 0
-          )
-        );
-
-
-      starsElement.textContent =
-        "★".repeat(rating) +
-        "☆".repeat(5 - rating);
-
-
-      const textElement =
-        document.createElement("div");
-
-
-      textElement.className =
-        "review-text";
-
-
-      textElement.textContent =
-        review.reviewText || "";
-
-
-      top.appendChild(
-        nameElement
-      );
-
-
-      top.appendChild(
-        starsElement
-      );
-
-
-      reviewElement.appendChild(
-        top
-      );
-
-
-      reviewElement.appendChild(
-        textElement
-      );
-
-
-      reviewsBox.appendChild(
-        reviewElement
-      );
-
-    });
-
-  }
-
-  catch (error) {
-
-    console.error(error);
-
-
-    averageBox.innerText =
-      "⭐ -";
-
-
-    countBox.innerText =
+    document.getElementById(
+      "ratingCount"
+    ).innerText =
       "שגיאה בטעינת הדירוגים";
 
 
-    reviewsBox.innerHTML = "";
-
-
-    const errorBox =
-      document.createElement("div");
-
-
-    errorBox.className =
-      "error";
-
-
-    errorBox.textContent =
-      "❌ לא הצלחנו לטעון את הביקורות: " +
-      error.message;
-
-
-    reviewsBox.appendChild(
-      errorBox
-    );
-
+    box.textContent =
+      "❌ " +
+      (
+        error.message ||
+        "שגיאה"
+      );
   }
-
 }
 
 
-/* =================================
-   START
-================================= */
+/* ==============================
+   AUTO REFRESH
+============================== */
 
-loadReviews();
+setInterval(
+  loadTaxiStatus,
+  15000
+);
+
+
+/* ==============================
+   START
+============================== */
+
+async function startWebsite(){
+
+  await loadTaxiStatus();
+
+  await loadReviews();
+
+  await checkAdminSession();
+}
+
+startWebsite();
 
 </script>
 
